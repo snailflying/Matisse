@@ -16,13 +16,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId 'com.zhihu.matisse.sample'
-        minSdkVersion 14
-        targetSdkVersion 27
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -35,18 +35,19 @@ android {
     }
 }
 
-ext.supportLibVersion = '27.1.1'
-
 dependencies {
     implementation project(':matisse')
+    implementation project(':compress')
 
 //    implementation 'com.zhihu.android:matisse:0.5.1-beta1'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
-    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.androidSupportVersion}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.androidSupportVersion}"
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation project(path: ':imagestategy')
+
 }
